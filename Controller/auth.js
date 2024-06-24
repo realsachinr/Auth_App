@@ -68,7 +68,7 @@ exports.login = async (req, res) => {
             message:'PLease fill all the details carefully',
         });
     }
-
+ 
     //check for registered user
     let user = await User.findOne({email});
     //if not a registered user
@@ -96,8 +96,12 @@ exports.login = async (req, res) => {
                             
 
         user = user.toObject();
+        console.log(user);
         user.token = token;
+
+        console.log(user);
         user.password =  undefined;
+        console.log(user);
 
         const options = {
             expires: new Date( Date.now() + 3 * 24 * 60 * 60 * 1000),

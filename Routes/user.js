@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../Model/userModel");
 
 // Import Controller
 const { login, signup } = require("../Controller/auth");
@@ -30,6 +31,25 @@ router.get("/admin", auth, isAdmin, (req, res) => {
     message: "Welcome to the protected route for admin",
   });
 });
+
+// router.get("/getEmail", auth, async (req, res) => {
+//   try {
+//     const id = req.user.id;
+//     console.log("ID: ", id);
+//     const user = await User.findById(id);
+
+//     res.status(200).json({
+//       success: true,
+//       user: user,
+//       message: "Welcome to the protected route for email",
+//     });
+//   } catch (err) {
+//     return res.status(500).json({
+//       success: false,
+//       message: "Internal Server Error",
+//     });
+//   }
+// });
 
 // EXport Router
 module.exports = router;
